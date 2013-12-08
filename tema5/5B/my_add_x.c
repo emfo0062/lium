@@ -2,14 +2,19 @@
 
 int main (void)
 {
-  char char_in[10];
-  int int_in, result;
-  int sum = 0;
-  while (scanf("%s",&char_in[0]))
+  char line[1024], *p, *e;
+  long int_in;
+  long sum = 0;
+  fgets(line, sizeof(line), stdin);
+  p = line;
+  for (p = line; ; p = e)
   {
-    if (char_in[0] == '\n') { printf("Result: %d\n",sum);return 0; }
-    sscanf(char_in,"%d",&int_in);
-    printf("%3d + %d = %3d\n", sum, int_in, int_in + sum);
+    int_in = strtol(p, &e, 10);
+    if (p == e)
+        break;
+    printf("%3ld + %ld = %3ld\n", sum, int_in, int_in + sum);
     sum += int_in;
   }
+  printf("Result: %ld\n",sum);
+  return 0;
 }
