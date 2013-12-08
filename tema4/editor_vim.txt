@@ -1,0 +1,36 @@
+Linux som utvecklingsmiljö, HT-13
+
+Tema 4 - Editorer
+
+PETTER LERENIUS
+790703-0295
+
+-------------------------------------------------------------------------
+Jag har valt att förklara hur text editorn Vim fungerar, och skriver texten i Emacs.
+
+* Hur man arbetar i text- och kommandmode
+Genom att trycka på 'i' kommer man till insert mode, alltså text mode. Trycker man 'Esc' så hamnar man i kommandomode.
+
+* Hur man startar och avslutar editorn
+Genom att skriva vim i kommandofönstret startar man text editorn, eventuellt med filens namn för att direkt öppna den. För att avsluta densamma skriver man ':q' i kommandomode.
+
+* Hur man skapar nya, öppnar samt sparar text-filer
+För att skapa en ny fil skriver man ':enew', och för att öppna en fil skriver man ':e <filnamn>', och för att spara skriver man ':w', allt i kommandomode.
+
+* Hur man skriver vanlig text
+För att skriva vanlig text måste man först byta till textmode genom ':i', och sen är det bara att skriva på tills det är dags att spara då man trycker 'Esc' för att komma ut i kommandomode, och sedan ':w', för att spara.
+
+* Hur man vandrar mellan olika delar av texten
+Genom att skriva ':<radnummer>' kan man förflytta sig till ett visst radnummer. Med 'gg' kommer man till toppen, och med 'G' till botten.
+
+* Hur man klipper, kopierar samt klistrar in text
+Med 'v' kan man markera text, för att sedan klippa ut texten använder man 'x', medans 'y' kopierar. För att sedan klistra in trycker man 'p' för att klistra in på raden efter och 'P' för att klistra in ovan. 'gp' klistrar in vid markören.
+
+* Hur man söker och ersätter texti
+För att söka i vim går det bra att använda '/<söksträng>'. Och vill man ersätta kan man skriva ':%s/<söksträng>/<erättningssträng>/g', eventuellt kan man lägga till c på slutet för att vim ska fråga innan den ersätter.
+
+* Vad ASCII är för något
+ASCII är en tecken standard för att koda bokstäver till binärdata. Det är en 7-bitskod vilket kan koda 128 olika täcken. Den består av engelskans bokstavsuppsättning plus siffror och punktueringstecken. För att kunna använda sig av svenska tecken finns andra kodningsstandarder, så som t.ex. UTF-8.
+
+* Editera textfilen med hexedit
+Jag öppnade filen med 'hexedit editor_vim.txt', sedan kunde jag med piltangenterna förflytta mig till rätt tvåsifferkombination. Genom att minska värdet med 0x20 fick jag en stor bokstav. Alternativt gick det att med 'tab' byta till textfältet och där byta till stora bokstäver.
