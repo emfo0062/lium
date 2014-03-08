@@ -1,0 +1,39 @@
+.TH LIBRESISTANCE 1
+.SH NAME
+Libresistance \- A small shared library that calculates the resulting resistance of
+several serial or parallel resistors
+.SH SYNOPSIS
+.B libresistance
+.SH DESCRIPTION
+.PP
+\fIlibresistance\fP is a shared library that calculates the resulting resistance of
+several serial or parallel resistors.
+.PP
+It was written for a course in linux.
+.PP
+It contains one function: float calc_resistance(int count, char conn, float *array);
+.SH RESOURCES
+.PP
+libresistance uses almost no resources.
+.SH DIAGNOSTICS
+The function should return the resulting resistance, and it returns -1 if any
+arguments are faulty.
+.SH SEE ALSO
+Other participants of the course has also made similar versions of this library.
+.SH COPYRIGHT
+libresistance is Copyright (c) 2013 Petter.
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 021111307 USA.
+.SH BUGS
+There probably are some, but we don’t know what they are yet.
+.SH AUTHORS
+Petter L

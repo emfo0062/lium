@@ -1,0 +1,15 @@
+diff -ruN diffdir/fil1 diffdir2/fil1
+--- diffdir/fil1	2013-12-26 20:22:00.120338776 +0100
++++ diffdir2/fil1	2013-12-26 20:23:07.464337866 +0100
+@@ -1,8 +1,8 @@
+ aaa
+-bbb
++222
+ 
+ ddd
+-555
+ 
++666
+ ggg
+-888
++hhh
