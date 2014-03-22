@@ -51,3 +51,6 @@ if [[ $? -eq 0 ]];then echo "[OK]";else echo "[FAIL]";fi
 echo "Testing with xxx`whoami`"
 ./checkuser.sh xxx`whoami`
 if [[ $? -eq 0 ]];then echo "[OK]";else echo "[OK]";fi
+
+echo "**** Testing print2lines.py (h) *****"
+./print2lines.py

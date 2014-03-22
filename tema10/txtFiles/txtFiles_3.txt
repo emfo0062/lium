@@ -1,0 +1,3 @@
+Den här textfilen har tre rader
+Det här är den andra raden.
+Och det här är den tredje, som inte borde synas...
