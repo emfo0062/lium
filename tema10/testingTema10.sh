@@ -1,8 +1,13 @@
 #!/bin/bash
 
 function main {
-  while test $# -gt 0
-  do
+  if [[ $# -eq 0 ]]; then
+    test_1f
+    test_1g
+    test_2
+  fi
+  
+  while [[ $# -gt 0 ]]; do
     case "$1" in
       "1f")
         test_1f
@@ -14,9 +19,7 @@ function main {
         test_2
         ;;
       *)
-	    test_1f
-        test_1g
-        test_2
+	    echo "Did not understand the parameter: $1"
         ;;
     esac
     shift
@@ -49,7 +52,7 @@ function test_1g {
 
 function test_2 {
   echo "**** Testing print2lines.py (2) *****"
-  for dir in {'.','test/with/a/faulty/path',`pwd`,"`pwd` `pwd`/txtFiles"}; do
+  for dir in {'.','test/with/a/faulty/path',"`pwd` `pwd`/txtFiles"}; do
     echo "=== Test with dir: $dir ==="
     ./print2lines.py $dir
 	echo
