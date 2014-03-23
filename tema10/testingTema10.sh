@@ -44,10 +44,16 @@ function test_1g {
   echo "**** Testing checkuser (1g) ****"
   echo "Testing with `whoami`"
   ./checkuser.sh `whoami`
+  echo "Testing without user and pipe `whoami`"
   if [[ $? -eq 0 ]];then echo "[OK]";else echo "[FAIL]";fi
+  echo  `whoami` | ./checkuser.sh
+  if [[ $? -eq 0 ]];then echo "[OK]";else echo "[FAIL]";fi  
   echo "Testing with xxx`whoami`"
   ./checkuser.sh xxx`whoami`
   if [[ $? -eq 0 ]];then echo "[OK]";else echo "[OK]";fi
+   echo "Time out without input"
+  ./checkuser.sh
+  if [[ $? -eq 0 ]];then echo "[OK]";else echo "[OK]";fi 
 }
 
 function test_2 {
