@@ -49,7 +49,7 @@ case "$command" in
     ;;
   "status")
     # If timer started output time since started, otherwise
-	# output that the timer has not yet been started
+    # output that the timer has not yet been started
     if [[ -e timetrack.txt ]]; then
       echo "Det har gått `outputTime` sekunder sedan start"
     else
