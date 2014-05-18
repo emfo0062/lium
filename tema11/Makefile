@@ -16,14 +16,15 @@ libuninstall:
 			make uninstall
 			cd ../../tema11/
 
-electrotestgtk:		src/electrotestgtk.c lib/resistance.h lib/component.h lib/power.h
-			gcc src/elektrotestgtk.c -o electrotestgtk `pkg-config --cflags --libs gtk+-2.0`
+electrotestgtk:		src/elektrotestgtk.c src/calc.c lib/resistance.h lib/component.h lib/power.h
+			gcc $(INC) src/elektrotestgtk.c src/calc.c -o electrotestgtk `pkg-config --cflags --libs gtk+-2.0`
 			#libinstall
 			#$(CC) $(INC) -o electrotestgtk src/electrotest.c $(LIBFLAG)
+#src/electrotestgtk.c:   electrotestgtk
 			
-test:			electrotest
-			./electrotest < testdata.txt
+test:			electrotestgtk
+			./electrotestgtk
 
 clean:
-			libuninstall
 		 	rm -f *.o electrotestgtk
+			#libuninstall
