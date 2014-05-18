@@ -17,7 +17,7 @@ libuninstall:
 			cd ../../tema11/
 
 electrotestgtk:		src/elektrotestgtk.c src/calc.c lib/resistance.h lib/component.h lib/power.h
-			gcc $(INC) src/elektrotestgtk.c src/calc.c -o electrotestgtk `pkg-config --cflags --libs gtk+-2.0`
+			gcc $(INC) src/elektrotestgtk.c src/calc.c -o electrotestgtk `pkg-config --cflags --libs gtk+-2.0` $(LIBFLAG)
 			#libinstall
 			#$(CC) $(INC) -o electrotestgtk src/electrotest.c $(LIBFLAG)
 #src/electrotestgtk.c:   electrotestgtk
