@@ -59,7 +59,7 @@ int main ( int argc, char *argv[] )
   window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 
   // Set window properties
-  gtk_window_set_title(GTK_WINDOW(window), "The Window Title");
+  gtk_window_set_title(GTK_WINDOW(window), "The Most Fabulous Electrics Calculator");
   gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
   gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
 
@@ -69,9 +69,9 @@ int main ( int argc, char *argv[] )
 
   // Entry
   entryNr = gtk_spin_button_new_with_range(1,3,1);
-  entryr1 = gtk_spin_button_new_with_range(0,1000000000,0.1);
-  entryr2 = gtk_spin_button_new_with_range(0,1000000000,0.1);
-  entryr3 = gtk_spin_button_new_with_range(0,1000000000,0.1);
+  entryr1 = gtk_spin_button_new_with_range(1234,1000000000,0.1);
+  entryr2 = gtk_spin_button_new_with_range(4321,1000000000,0.1);
+  entryr3 = gtk_spin_button_new_with_range(5555,1000000000,0.1);
   
   // Boxes
   boxResistors = gtk_vbox_new(FALSE, 5);
@@ -143,6 +143,7 @@ int presResult( gpointer data )
   {
     printf("Resistor #%d: %.2f\n",i, resistor[i]);
   }
-  calcValues(nrOfResistors,'P',resistor);
+  char conn = gtk_toggle_button_get_active(radioSerial) ? 'S': 'P';
+  calcValues(nrOfResistors,conn,resistor);
   return 0;
 }
