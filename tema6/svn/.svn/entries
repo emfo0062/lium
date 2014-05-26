@@ -26,46 +26,6 @@ rikte
 
 988f21b6-78c4-48ee-8064-090920843656
 
-lib
-dir
-
-src
-dir
-
-testdata.txt
-file
-
-
-
-
-2014-03-04T18:04:20.584207Z
-a274c29eb219c0834f6e7f41e3c06fc7
-2014-03-04T21:48:14.220905Z
-12
-petter
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-19
-
 power
 dir
 
@@ -108,4 +68,44 @@ dir
 
 component
 dir
+
+lib
+dir
+
+src
+dir
+
+testdata.txt
+file
+
+
+
+
+2014-03-04T18:04:20.584207Z
+a274c29eb219c0834f6e7f41e3c06fc7
+2014-03-04T21:48:14.220905Z
+12
+petter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+19
 

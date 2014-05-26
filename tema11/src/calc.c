@@ -8,20 +8,17 @@
 #include <component.h>
 #include <power.h>
 
-float power = 1234;
-float comp[3] = {1,2,3};
-float totRes = 0.123;
-float volt = 15.0;
-/**
-*/
-int getPower()
+float power    = 1234;
+float comp[3]  = {1,2,3};
+float totRes   = 0.123;
+float voltage  = 15.0;
+
+float getPower( void )
 {
   return power;
 }
 
-/**
-*/
-int getComponents(unsigned int index)
+float getComponentValue( unsigned int index )
 {
   if (index < 3)
   {
@@ -30,23 +27,20 @@ int getComponents(unsigned int index)
   return -1;
 }
 
-/**
-*/
-float getResistors()
+float getResistors( void )
 {
   return totRes;
 }
 
-/**
-*/
-int calcValues(int count, char conn, float resistors[3])
+int calcValues(int count, char conn, float voltage, float resistors[3])
 {
   int i;
   totRes = calc_resistance(count,conn,resistors);
   if (totRes == -1) {printf ("Error - Misslyckades med att räkna ut ersättningsresistans\n"); return -1;}
-  printf("Ersättningsresistans: %.2f ohm\n",totRes);
-  power = calc_power_r(volt, totRes);
+  power = calc_power_r(voltage, totRes);
+  printf("Calc: %d, %c, %.2f, %.2f, %.2f, %.2f\n",count,conn,voltage,resistors[0],resistors[1],resistors[2]);
   printf("Effekt: %.2f W\n", power);
+  printf("Ersättningsresistans: %.2f ohm\n",totRes);
   printf("Ersättningsresistanser i E12-serien kopplade i serie: ");
   float *fp=&comp[0];
   for (i = e_resistance(totRes, &comp[0]); i>0; i--){

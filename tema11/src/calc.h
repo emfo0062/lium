@@ -3,8 +3,15 @@
 * calc.h
 *
 ***************************************************/
-
-gint getPower();
-gint getComponents();
-gint getResistance();
-gint calcValues();
+/**
+  */
+float getPower(void);
+/**
+  */
+float getComponents(unsigned int);
+/**
+  */
+float getResistance(void);
+/**
+  */
+int calcValues(int,char,float,float[]);
