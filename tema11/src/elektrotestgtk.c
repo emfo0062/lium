@@ -1,48 +1,42 @@
-/**************************************************
+/**
+* @mainpage
 *
-* Tema 11
+* This graphics application uses the electrotest
+* liraries produced in tema 9
 *
+* @author Petter Lerenius
+* @date 27/5-2014
+* @version 1.0
+* @file electrotestgtk.c
 ***************************************************/
 
 #include <gtk/gtk.h>
 #include <stdio.h>
+#include "electrotestgtk.h"
 #include "calc.h"
 
 
-/**
-  Globals
+/*
+  Global variables
   */
-GtkWidget *entryNr, *entryV;
-GtkWidget *entryR1, *entryR2, *entryR3;
-GtkWidget *radioSerial,*radioParalell;
-/**
-  Add a widget to a container with a label in front of it.
-  It is a helper function to reduce code lines.
-  */
-void add_widget_with_label( GtkContainer *, gchar *, GtkWidget *);
+GtkWidget *entryNr; //!< Entry widget for number of resistors
+GtkWidget *entryV; //!< Entry widget for voltage
+GtkWidget *entryR1; //!< Entry widget for resistor value number 1
+GtkWidget *entryR2; //!< Entry widget for resistor value number 2
+GtkWidget *entryR3; //!< Entry widget for resistor value number 3
+GtkWidget *radioSerial; //!< Radio buttons for serial connection type
+GtkWidget *radioParalell; //!< Radio buttons for parallel connection type
 
-/**
-  Callback function for calculate button to present result
-
-  Will call presResult function to present the result to 
-  the user.
-*/
 void button_clicked(GtkWidget *button, gpointer data)
 {
   presResult(data);
 }
 
-/**
-  Close the app properly
-*/
 void closeApp (GtkWidget *window, gpointer data)
 {
   gtk_main_quit();
 }
 
-/**
-
-*/
 gboolean delete_event (GtkWidget *widget, GdkEvent *event, gpointer data)
 {
   printf("In delete_event");

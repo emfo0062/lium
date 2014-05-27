@@ -25,6 +25,9 @@ electrotestgtk:		src/elektrotestgtk.c src/calc.c lib/resistance.h lib/component.
 test:			electrotestgtk
 			./electrotestgtk
 
+doc:                    src/elektrotestgtk.c src/calc.c src/calc.h lib/resistance.h lib/component.h lib/power.h
+			doxygen
+
 clean:
 		 	rm -f *.o electrotestgtk
 			#libuninstall
