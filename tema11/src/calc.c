@@ -12,6 +12,7 @@ float power    = 1234;
 float comp[3]  = {1,2,3};
 float totRes   = 0.123;
 float voltage  = 15.0;
+char compStr[1024];
 
 float getPower( void )
 {
@@ -27,7 +28,24 @@ float getComponentValue( unsigned int index )
   return -1;
 }
 
-float getResistors( void )
+char* getComponentStr( void )
+{
+  int i, len;
+  char tmpStr[128];
+  float *fp=&comp[0];
+  for (i = e_resistance(totRes, &comp[0]); i>0; i--) {
+    sprintf(tmpStr,"%1.0f", *fp++);
+    strcat(compStr,tmpStr);
+    if (i>1)
+    {
+      strcat(compStr,", ");
+    }
+  }
+
+  return compStr;
+}
+
+float getResistance( void )
 {
   return totRes;
 }

@@ -16,6 +16,10 @@ float getComponents(unsigned int);
 
 /**
   */
+char* getComponentStr( void );
+
+/**
+  */
 float getResistance(void);
 
 /**

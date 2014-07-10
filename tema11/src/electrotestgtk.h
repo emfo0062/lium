@@ -39,3 +39,6 @@ void closeApp (GtkWidget *window, gpointer data);
 */
 gboolean delete_event (GtkWidget *widget, GdkEvent *event, gpointer data);
 
+int presResult( gpointer );
+
+int showPopUpWithResult( int, char, float, float [] );
