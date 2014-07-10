@@ -190,7 +190,6 @@ GtkWidget *createResultPopUp ( int nrOfResistors, char conn, float voltage, floa
 }
 int showPopUpWithResult( int nrOfResistors, char conn, float voltage, float resistors[] )
 {
-  printf("showPopUp!!\n");
   // Show result
   GtkWidget *dialog = createResultPopUp(nrOfResistors,conn,voltage,resistors);
   int result = gtk_dialog_run((GtkDialog *)dialog);
