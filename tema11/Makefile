@@ -3,7 +3,7 @@ LIBFLAG = -Llib -lresistance -lpower -lcomponent
 INSTALL_LIBFLAG = -Llib -lresistance -lpower -lcomponent
 INC = -Ilib
 
-all:			electrotestgtk
+all:			elektrotestgtk
 libinstall:
 			cd ../tema6/svn/
 			make install
@@ -16,18 +16,20 @@ libuninstall:
 			make uninstall
 			cd ../../tema11/
 
-electrotestgtk:		src/elektrotestgtk.c src/calc.c lib/resistance.h lib/component.h lib/power.h
-			gcc $(INC) src/elektrotestgtk.c src/calc.c -o electrotestgtk `pkg-config --cflags --libs gtk+-2.0` $(LIBFLAG)
+elektrotestgtk:		src/elektrotestgtk.c  src/elektrotestgtk.h\
+                        src/calc.c  src/calc.h\
+                        lib/resistance.h lib/component.h lib/power.h
+			gcc $(INC) src/elektrotestgtk.c src/calc.c -o elektrotestgtk `pkg-config --cflags --libs gtk+-2.0` $(LIBFLAG)
 			
-test:			electrotestgtk
-			./electrotestgtk
+test:			elektrotestgtk
+			./elektrotestgtk
 
-doc:                    src/elektrotestgtk.c src/calc.c src/calc.h lib/resistance.h lib/component.h lib/power.h
+doc:                    src/elektrotestgtk.c src/elektrotestgtk.h\
+                        src/calc.c src/calc.h\
+                        lib/resistance.h lib/component.h lib/power.h
 			doxygen
-			cd doc/latex
-			make
-			cd -
+			${MAKE} -C doc/latex
 
 clean:
-		 	rm -f *.o electrotestgtk
+		 	rm -f *.o elektrotestgtk
 			rm -rf doc/

@@ -13,7 +13,7 @@
 #include <gtk/gtk.h>
 #include <stdio.h>
 #include <string.h>
-#include "electrotestgtk.h"
+#include "elektrotestgtk.h"
 #include "calc.h"
 
 

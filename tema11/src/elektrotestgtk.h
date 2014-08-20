@@ -1,6 +1,6 @@
 
 /**
-  The main function for the application
+  @brief The main function for the application
   */
 int main ( int , char *[] );
 
@@ -27,7 +27,7 @@ void add_widget_with_label( GtkContainer *, gchar *, GtkWidget * );
  */
 void button_clicked(GtkWidget *button, gpointer data);
 /**
-  @bried GTK function to close app properly
+  @brief GTK function to close app properly
   
   Close the app properly by using gtk_main_quit()
 
@@ -37,13 +37,13 @@ void button_clicked(GtkWidget *button, gpointer data);
 void closeApp (GtkWidget *window, gpointer data);
 
 /**
-  @brief delete event callback
+  @brief Delete event callback
 
   @param widget
   @param event
   @param data
 */
-gboolean delete_event (GtkWidget *widget, GdkEvent *event, gpointer data);
+gboolean delete_event (GtkWidget*, GdkEvent*, gpointer);
 /**
   @brief Presents the result with a pop up
 
@@ -51,11 +51,20 @@ gboolean delete_event (GtkWidget *widget, GdkEvent *event, gpointer data);
 */
 int presResult( gpointer );
 /**
+  @brief Creates the result pop up widget
+
+  @param int Number of resistors
+  @param char Type of connection 'S' Serial, 'P' Parallell
+  @param float Voltage
+  @param float[] Resistor values
+  */
+GtkWidget *createResultPopUp ( int, char, float, float [] );
+/**
   @brief Shows the pop up with result
 
   @param int number of resistors
   @param char Type of connection 'S' Serial, 'P' Parallell
   @param float Voltage
-  @param float[] 
+  @param float[] Resistor values
 */
 int showPopUpWithResult( int, char, float, float [] );
