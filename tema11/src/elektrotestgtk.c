@@ -11,6 +11,7 @@
 ***************************************************/
 
 #include <gtk/gtk.h>
+#include <gnome.h>
 #include <stdio.h>
 #include <string.h>
 #include "elektrotestgtk.h"
@@ -29,6 +30,19 @@ GtkWidget *entryR3; //!< Entry widget for resistor value number 3
 GtkWidget *radioSerial; //!< Radio buttons for serial connection type
 GtkWidget *radioParalell; //!< Radio buttons for parallel connection type
 
+static GnomeUIInfo filemenu[] = {
+  GNOMEUIINFO_MENU_EXIT_ITEM ( closeApp, NULL ),
+  GNOMEUIINFO_END
+};
+static GnomeUIInfo helpmenu[] = {
+  GNOMEUIINFO_MENU_ABOUT_ITEM ( onAboutActivate, NULL ),
+  GNOMEUIINFO_END
+};
+static GnomeUIInfo menubar[] = {
+  GNOMEUIINFO_MENU_FILE_TREE (filemenu),
+  GNOMEUIINFO_MENU_HELP_TREE (helpmenu),
+  GNOMEUIINFO_END
+};
 
 void button_clicked(GtkWidget *button, gpointer data)
 {
@@ -40,6 +54,16 @@ void closeApp (GtkWidget *window, gpointer data)
   gtk_main_quit();
 }
 
+void onAboutActivate (GtkMenuItem * menuItem, gpointer userData)
+{
+  const char * authors[] = {"Petter L", NULL};
+  GtkWidget *about = gnome_about_new( "Tema 11", "1.0",
+      "(c) Petter",
+      "LiUM",
+      (const char ** ) authors, NULL,
+      "Translators", NULL);
+  gtk_widget_show(about);
+}
 gboolean delete_event (GtkWidget *widget, GdkEvent *event, gpointer data)
 {
   printf("In delete_event");
@@ -54,13 +78,14 @@ int main ( int argc, char *argv[] )
   GtkWidget *boxResistors, *boxConnType;
   GtkWidget *hbox, *vbox;
 
-  gtk_init(&argc,&argv);
-  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+  gnome_program_init("gnome1", "1.0", LIBGNOMEUI_MODULE, argc, argv, GNOME_PARAM_NONE);
+  window = gnome_app_new("gnome1","Menus, menus, menus");
 
   // Set window properties
   gtk_window_set_title(GTK_WINDOW(window), "The Most Fabulous Electronics Calculator");
   gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
   gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
+  gnome_app_create_menus( GNOME_APP(window), menubar);
 
   // Labels
   labelHeader = gtk_label_new("Calculate the Resistors v 1.0");
@@ -109,7 +134,7 @@ int main ( int argc, char *argv[] )
   gtk_box_pack_start(GTK_BOX(hbox), boxResistors, FALSE, FALSE, 5);
 
   // Add containers
-  gtk_container_add(GTK_CONTAINER(window), hbox);
+  gnome_app_set_contents( GNOME_APP(window), hbox);
 
   // Show widgets 
   gtk_widget_show_all(window);
@@ -180,4 +205,9 @@ int showPopUpWithResult( int nrOfResistors, char conn, float voltage, float resi
   int result = gtk_dialog_run((GtkDialog *)dialog);
   gtk_widget_destroy(dialog);
   return 0;
+}
+
+int createMenu ( void )
+{
+  
 }

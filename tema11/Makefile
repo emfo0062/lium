@@ -19,7 +19,7 @@ libuninstall:
 elektrotestgtk:		src/elektrotestgtk.c  src/elektrotestgtk.h\
                         src/calc.c  src/calc.h\
                         lib/resistance.h lib/component.h lib/power.h
-			gcc $(INC) src/elektrotestgtk.c src/calc.c -o elektrotestgtk `pkg-config --cflags --libs gtk+-2.0` $(LIBFLAG)
+			gcc $(INC) src/elektrotestgtk.c src/calc.c -o elektrotestgtk `pkg-config --cflags --libs libgnome-2.0 libgnomeui-2.0` $(LIBFLAG)
 			
 test:			elektrotestgtk
 			./elektrotestgtk

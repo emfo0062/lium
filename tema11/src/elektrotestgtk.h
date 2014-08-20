@@ -35,6 +35,13 @@ void button_clicked(GtkWidget *button, gpointer data);
   @param data
 */
 void closeApp (GtkWidget *window, gpointer data);
+/**
+  @brief Show About dialog when menu pressed
+  
+  @param GtkMenuItem
+  @param gpointer
+*/
+void onAboutActivate (GtkMenuItem *, gpointer);
 
 /**
   @brief Delete event callback
