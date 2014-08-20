@@ -12,6 +12,7 @@
 
 #include <gtk/gtk.h>
 #include <stdio.h>
+#include <string.h>
 #include "electrotestgtk.h"
 #include "calc.h"
 
@@ -29,34 +30,22 @@ GtkWidget *radioSerial; //!< Radio buttons for serial connection type
 GtkWidget *radioParalell; //!< Radio buttons for parallel connection type
 
 
-/**
-  Called when button is clicked
-*/
 void button_clicked(GtkWidget *button, gpointer data)
 {
   presResult(data);
 }
 
-/**
-  Will close the application nicely
-*/
 void closeApp (GtkWidget *window, gpointer data)
 {
   gtk_main_quit();
 }
 
-/**
-  Called when the delete_event occurs
-*/
 gboolean delete_event (GtkWidget *widget, GdkEvent *event, gpointer data)
 {
   printf("In delete_event");
   return FALSE;
 }
 
-/**
-  Setting up the GTK
-*/
 int main ( int argc, char *argv[] )
 {
   GtkWidget *buttonCalc, *buttonClose;
@@ -129,10 +118,6 @@ int main ( int argc, char *argv[] )
   return 0;
 }
 
-
-/**
-  Helper function for placing a widget with a label
-*/
 void add_widget_with_label( GtkContainer *box, gchar *caption, GtkWidget *widget)
 {
   GtkWidget *label = gtk_label_new(caption);

@@ -1,3 +1,9 @@
+
+/**
+  The main function for the application
+  */
+int main ( int , char *[] );
+
 /**
   @brief A helper function for labeled widgets
 
@@ -8,7 +14,7 @@
   @param caption
   @param widget
   */
-void add_widget_with_label( GtkContainer *box, gchar *caption, GtkWidget *widget);
+void add_widget_with_label( GtkContainer *, gchar *, GtkWidget * );
 
 /**
   @brief Callback function for calculate button to present result
@@ -38,7 +44,18 @@ void closeApp (GtkWidget *window, gpointer data);
   @param data
 */
 gboolean delete_event (GtkWidget *widget, GdkEvent *event, gpointer data);
+/**
+  @brief Presents the result with a pop up
 
+  @param gpointer Data to passed to the function is ignored 
+*/
 int presResult( gpointer );
+/**
+  @brief Shows the pop up with result
 
+  @param int number of resistors
+  @param char Type of connection 'S' Serial, 'P' Parallell
+  @param float Voltage
+  @param float[] 
+*/
 int showPopUpWithResult( int, char, float, float [] );

@@ -4,15 +4,16 @@
 *
 ***************************************************/
 #include <stdio.h>
+#include <string.h>
 #include <resistance.h>
 #include <component.h>
 #include <power.h>
 
-float power    = 1234;
-float comp[3]  = {1,2,3};
-float totRes   = 0.123;
-float voltage  = 15.0;
-char  compStr[1024] = "";
+float power    = 1234;    //!< Global variable for power
+float comp[3]  = {1,2,3}; //!< Global variable for component values
+float totRes   = 0.123;   //!< Global variable for equivalent resistor value
+float voltage  = 15.0;    //!< Global variable for voltage value
+char  compStr[1024] = ""; //!< Global variable for component string
 
 float getPower( void )
 {
