@@ -24,9 +24,10 @@
 int main ( int argc, char *argv[] )
 {
   GtkWidget *window;
-
+  // Initialize the gnome application and create the main window
   gnome_program_init("Elektrotest", "1.0", LIBGNOMEUI_MODULE, argc, argv, GNOME_PARAM_NONE);
   window = createMainWindow();
+
   // Show widgets 
   gtk_widget_show_all(window);
   gtk_main();

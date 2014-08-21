@@ -34,6 +34,7 @@ char* getComponentStr( void )
   int i, len;
   char tmpStr[128];
   float *fp=&comp[0];
+  compStr[0] = '\0';
   for (i = e_resistance(totRes, &comp[0]); i>0; i--) {
     sprintf(tmpStr,"%1.0f", *fp++);
     strcat(compStr,tmpStr);

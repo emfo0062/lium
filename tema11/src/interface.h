@@ -1,4 +1,12 @@
+/**
+  @brief Creates the main window for the application
+
+  This function putts all the contaiers together to
+  make up the application window.
+
+  */
 GtkWidget *createMainWindow( void );
+
 /**
   @brief A helper function for labeled widgets
 
@@ -9,7 +17,7 @@ GtkWidget *createMainWindow( void );
   @param caption
   @param widget
   */
-void add_widget_with_label( GtkContainer *, gchar *, GtkWidget * );
+void addWidgetWithLabel( GtkContainer *, gchar *, GtkWidget * );
 
 /**
   @brief Callback function for calculate button to present result
@@ -20,7 +28,7 @@ void add_widget_with_label( GtkContainer *, gchar *, GtkWidget * );
   @param button
   @param data
  */
-void button_clicked(GtkWidget *button, gpointer data);
+void buttonClicked(GtkWidget *button, gpointer data);
 /**
   @brief GTK function to close app properly
   
@@ -38,14 +46,6 @@ void closeApp (GtkWidget *window, gpointer data);
 */
 void onAboutActivate (GtkMenuItem *, gpointer);
 
-/**
-  @brief Delete event callback
-
-  @param widget
-  @param event
-  @param data
-*/
-gboolean delete_event (GtkWidget*, GdkEvent*, gpointer);
 /**
   @brief Presents the result with a pop up
 

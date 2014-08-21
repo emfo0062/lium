@@ -6,7 +6,7 @@
 /*
   Global variables
   */
-GtkWidget *app;  //!< Main application window
+GtkWidget *app;     //!< Main application window
 GtkWidget *entryNr; //!< Entry widget for number of resistors
 GtkWidget *entryV;  //!< Entry widget for voltage
 GtkWidget *entryR1; //!< Entry widget for resistor value number 1
@@ -18,26 +18,27 @@ GtkWidget *radioParalell; //!< Radio buttons for parallel connection type
 static GnomeUIInfo filemenu[] = {
   GNOMEUIINFO_MENU_EXIT_ITEM ( closeApp, NULL ),
   GNOMEUIINFO_END
-};
+};//!< File menu item
 static GnomeUIInfo helpmenu[] = {
   GNOMEUIINFO_MENU_ABOUT_ITEM ( onAboutActivate, NULL ),
   GNOMEUIINFO_END
-};
+};//!< Help menu item
 static GnomeUIInfo menubar[] = {
   GNOMEUIINFO_MENU_FILE_TREE (filemenu),
   GNOMEUIINFO_MENU_HELP_TREE (helpmenu),
   GNOMEUIINFO_END
-};
+};//!< Menubar for the application
 
 GtkWidget *createMainWindow( void )
 {
-  GtkWidget *app;
-  GtkWidget *buttonCalc, *buttonClose;
+  GtkWidget *app;//!< Main container
+  GtkWidget *buttonCalc, *buttonClose; 
   GtkWidget *labelHeader;
   GtkWidget *label;
   GtkWidget *boxResistors, *boxConnType;
   GtkWidget *hbox, *vbox;
 
+  // Create new Gnome application
   app = gnome_app_new("gnome1","Menus, menus, menus");
 
   // Set window properties
@@ -65,8 +66,7 @@ GtkWidget *createMainWindow( void )
 
   // Set callback functions
   g_signal_connect( GTK_OBJECT (app), "destroy", GTK_SIGNAL_FUNC (closeApp), NULL );
-  g_signal_connect( GTK_OBJECT (app), "delete_event", GTK_SIGNAL_FUNC (delete_event), NULL );
-  g_signal_connect( GTK_OBJECT (buttonCalc), "clicked", GTK_SIGNAL_FUNC (button_clicked), NULL );
+  g_signal_connect( GTK_OBJECT (buttonCalc), "clicked", GTK_SIGNAL_FUNC (buttonClicked), NULL );
   g_signal_connect( GTK_OBJECT (buttonClose), "clicked", GTK_SIGNAL_FUNC (closeApp), NULL );
 
   // Boxes
@@ -75,30 +75,31 @@ GtkWidget *createMainWindow( void )
   hbox = gtk_hbox_new(TRUE, 5);
   vbox = gtk_vbox_new(FALSE, 10);
 
-  // Packing boxes
+  // Packing boxes and adding labels
   gtk_box_pack_start(GTK_BOX(boxConnType), label, TRUE, FALSE, 5);
-  add_widget_with_label( GTK_CONTAINER( boxConnType ), "Serial", radioSerial );
-  add_widget_with_label( GTK_CONTAINER( boxConnType ), "Paralell", radioParalell );
-  add_widget_with_label( GTK_CONTAINER( boxConnType ), "Voltage", entryV );
+  addWidgetWithLabel( GTK_CONTAINER( boxConnType ), "Serial", radioSerial );
+  addWidgetWithLabel( GTK_CONTAINER( boxConnType ), "Paralell", radioParalell );
+  addWidgetWithLabel( GTK_CONTAINER( boxConnType ), "Voltage", entryV );
   gtk_box_pack_start(GTK_BOX(boxConnType), buttonClose, TRUE, FALSE, 5);
 
-  add_widget_with_label( GTK_CONTAINER(boxResistors), "Number of resistors:", entryNr);
-  add_widget_with_label( GTK_CONTAINER(boxResistors), "Resistor 1:", entryR1);
-  add_widget_with_label( GTK_CONTAINER(boxResistors), "Resistor 2:", entryR2);
-  add_widget_with_label( GTK_CONTAINER(boxResistors), "Resistor 3:", entryR3);
+  addWidgetWithLabel( GTK_CONTAINER(boxResistors), "Number of resistors:", entryNr);
+  addWidgetWithLabel( GTK_CONTAINER(boxResistors), "Resistor 1:", entryR1);
+  addWidgetWithLabel( GTK_CONTAINER(boxResistors), "Resistor 2:", entryR2);
+  addWidgetWithLabel( GTK_CONTAINER(boxResistors), "Resistor 3:", entryR3);
 
   gtk_box_pack_start(GTK_BOX(boxResistors), buttonCalc, TRUE, FALSE, 5);
   
   gtk_box_pack_start(GTK_BOX(hbox), boxConnType, FALSE, FALSE, 5);
   gtk_box_pack_start(GTK_BOX(hbox), boxResistors, FALSE, FALSE, 5);
 
-  // Add containers
+  // Add containers to gnome application
   gnome_app_set_contents( GNOME_APP(app), hbox);
 
+  // Return Gnome app
   return app;
 }
 
-void button_clicked(GtkWidget *button, gpointer data)
+void buttonClicked(GtkWidget *button, gpointer data)
 {
   presResult(data);
 }
@@ -118,12 +119,8 @@ void onAboutActivate (GtkMenuItem * menuItem, gpointer userData)
       "Translators", NULL);
   gtk_widget_show(about);
 }
-gboolean delete_event (GtkWidget *widget, GdkEvent *event, gpointer data)
-{
-  printf("In delete_event");
-  return FALSE;
-}
-void add_widget_with_label( GtkContainer *box, gchar *caption, GtkWidget *widget)
+
+void addWidgetWithLabel( GtkContainer *box, gchar *caption, GtkWidget *widget)
 {
   GtkWidget *label = gtk_label_new(caption);
   GtkWidget *hbox = gtk_hbox_new(TRUE,4);
@@ -185,9 +182,4 @@ int showPopUpWithResult( int nrOfResistors, char conn, float voltage, float resi
   int result = gtk_dialog_run((GtkDialog *)dialog);
   gtk_widget_destroy(dialog);
   return 0;
-}
-
-int createMenu ( void )
-{
-  
 }
