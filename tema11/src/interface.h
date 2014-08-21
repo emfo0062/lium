@@ -1,3 +1,4 @@
+GtkWidget *createMainWindow( void );
 /**
   @brief A helper function for labeled widgets
 
