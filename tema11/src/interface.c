@@ -42,14 +42,14 @@ GtkWidget *createMainWindow( void )
   app = gnome_app_new("gnome1","Menus, menus, menus");
 
   // Set window properties
-  gtk_window_set_title(GTK_WINDOW(app), "The Most Fabulous Electronics Calculator");
+  gtk_window_set_title(GTK_WINDOW(app), "Den mest fantastiska elektronikkalkylatorn");
   gtk_window_set_position(GTK_WINDOW(app), GTK_WIN_POS_CENTER);
   gtk_window_set_default_size(GTK_WINDOW(app), 300, 200);
   gnome_app_create_menus( GNOME_APP(app), menubar);
 
   // Labels
-  labelHeader = gtk_label_new("Calculate the Resistors v 1.0");
-  label       = gtk_label_new("Do you have them in:");
+  labelHeader = gtk_label_new("Räkna ut resistansen v1.0");
+  label       = gtk_label_new("Typ av koppling:");
 
   // Entry
   entryNr = gtk_spin_button_new_with_range(1,3,1);
@@ -59,8 +59,8 @@ GtkWidget *createMainWindow( void )
   entryR3 = gtk_spin_button_new_with_range(5555.5,1000000000,0.1);
   
   // Buttons
-  buttonCalc    = gtk_button_new_with_label("Calculate");
-  buttonClose   = gtk_button_new_with_label("Exit");
+  buttonCalc    = gtk_button_new_with_label("Räkna ut");
+  buttonClose   = gtk_button_new_with_label("Avsluta");
   radioSerial   = gtk_radio_button_new(NULL);
   radioParalell = gtk_radio_button_new_from_widget( GTK_RADIO_BUTTON( radioSerial ));
 
@@ -77,15 +77,15 @@ GtkWidget *createMainWindow( void )
 
   // Packing boxes and adding labels
   gtk_box_pack_start(GTK_BOX(boxConnType), label, TRUE, FALSE, 5);
-  addWidgetWithLabel( GTK_CONTAINER( boxConnType ), "Serial", radioSerial );
-  addWidgetWithLabel( GTK_CONTAINER( boxConnType ), "Paralell", radioParalell );
-  addWidgetWithLabel( GTK_CONTAINER( boxConnType ), "Voltage", entryV );
+  addWidgetWithLabel( GTK_CONTAINER( boxConnType ), "Seriell", radioSerial );
+  addWidgetWithLabel( GTK_CONTAINER( boxConnType ), "Parallell", radioParalell );
+  addWidgetWithLabel( GTK_CONTAINER( boxConnType ), "Spänning (V):", entryV );
   gtk_box_pack_start(GTK_BOX(boxConnType), buttonClose, TRUE, FALSE, 5);
 
-  addWidgetWithLabel( GTK_CONTAINER(boxResistors), "Number of resistors:", entryNr);
-  addWidgetWithLabel( GTK_CONTAINER(boxResistors), "Resistor 1:", entryR1);
-  addWidgetWithLabel( GTK_CONTAINER(boxResistors), "Resistor 2:", entryR2);
-  addWidgetWithLabel( GTK_CONTAINER(boxResistors), "Resistor 3:", entryR3);
+  addWidgetWithLabel( GTK_CONTAINER(boxResistors), "Antal resistorer:", entryNr);
+  addWidgetWithLabel( GTK_CONTAINER(boxResistors), "Resistor #1:", entryR1);
+  addWidgetWithLabel( GTK_CONTAINER(boxResistors), "Resistor #2:", entryR2);
+  addWidgetWithLabel( GTK_CONTAINER(boxResistors), "Resistor #3:", entryR3);
 
   gtk_box_pack_start(GTK_BOX(boxResistors), buttonCalc, TRUE, FALSE, 5);
   
@@ -116,7 +116,7 @@ void onAboutActivate (GtkMenuItem * menuItem, gpointer userData)
       "(c) Petter",
       "LiUM",
       (const char ** ) authors, NULL,
-      "Translators", NULL);
+      "Bertil Johansson", NULL);
   gtk_widget_show(about);
 }
 
@@ -131,7 +131,7 @@ void addWidgetWithLabel( GtkContainer *box, gchar *caption, GtkWidget *widget)
   gtk_container_add(box,hbox);
 }
 
-int presResult( gpointer data )
+void presResult( gpointer data )
 {
   float resistors[3] = {0,0,0};
   char conn         = gtk_toggle_button_get_active((GtkToggleButton *) radioSerial) ? 'S': 'P';
@@ -141,12 +141,12 @@ int presResult( gpointer data )
   resistors[1]       = gtk_spin_button_get_value( GTK_SPIN_BUTTON( entryR2 ) );
   resistors[2]       = gtk_spin_button_get_value( GTK_SPIN_BUTTON( entryR3 ) );
   calcValues(nrOfResistors,conn,voltage,resistors);
-  return showPopUpWithResult(nrOfResistors,conn,voltage,resistors);
+  showPopUpWithResult();
 }
 
-GtkWidget *createResultPopUp ( int nrOfResistors, char conn, float voltage, float resistors[] )
+GtkWidget *createResultPopUp ( void )
 {
-  GtkWidget *dialog = gtk_dialog_new_with_buttons ("Result",
+  GtkWidget *dialog = gtk_dialog_new_with_buttons ("Resultat",
       (GtkWindow*) app,
       GTK_DIALOG_MODAL,
       GTK_STOCK_OK,
@@ -175,11 +175,10 @@ GtkWidget *createResultPopUp ( int nrOfResistors, char conn, float voltage, floa
   
   return dialog;
 }
-int showPopUpWithResult( int nrOfResistors, char conn, float voltage, float resistors[] )
+void showPopUpWithResult( void )
 {
   // Show result
-  GtkWidget *dialog = createResultPopUp(nrOfResistors,conn,voltage,resistors);
+  GtkWidget *dialog = createResultPopUp();
   int result = gtk_dialog_run((GtkDialog *)dialog);
   gtk_widget_destroy(dialog);
-  return 0;
 }

@@ -31,6 +31,18 @@ doc:                    src/elektrotestgtk.c src/elektrotestgtk.h\
 			doxygen
 			${MAKE} -C doc/latex
 
+release:                src/elektrotestgtk.c src/elektrotestgtk.h\
+                        src/calc.c src/calc.h\
+                        lib/resistance.h lib/component.h lib/power.h\
+		 	Makefile Doxyfile
+		 	mkdir -p lab11/doc
+		 	cp -r src lab11/
+		 	cp -r lib lab11/
+		 	cp Makefile lab11/
+		 	cp Doxyfile lab11/
+		 	${MAKE} doc
+		 	cp doc/latex/refman.pdf lab11/doc/doc.pdf
+		 	tar -cvzf PetterLerenius_lab11.tar.gz lab11
 clean:
-		 	rm -f *.o elektrotestgtk
-			rm -rf doc/
+		 	rm -f *.o elektrotestgtk PetterLerenius_lab11.tar.gz
+			rm -rf doc/ lab11/

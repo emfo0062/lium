@@ -52,12 +52,12 @@ float getResistance( void )
   return totRes;
 }
 
-int calcValues(int count, char conn, float voltage, float resistors[3])
+int calcValues(int count, char conn, float volt, float resistors[3])
 {
   int i;
   totRes = calc_resistance(count,conn,resistors);
   if (totRes == -1) {printf ("Error - Misslyckades med att räkna ut ersättningsresistans\n"); return -1;}
-  power = calc_power_r(voltage, totRes);
+  power = calc_power_r(volt, totRes);
   
   return 0;
 }

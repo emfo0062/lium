@@ -13,11 +13,11 @@ GtkWidget *createMainWindow( void );
   Add a widget to a container with a label in front of it.
   It is a helper function to reduce code lines.
 
-  @param box
-  @param caption
-  @param widget
+  @param box Pointer to the container to put the label and widget in
+  @param caption Caption of the label
+  @param widget The widget to add in the container
   */
-void addWidgetWithLabel( GtkContainer *, gchar *, GtkWidget * );
+void addWidgetWithLabel( GtkContainer *box, gchar *caption, GtkWidget *widget);
 
 /**
   @brief Callback function for calculate button to present result
@@ -41,32 +41,25 @@ void closeApp (GtkWidget *window, gpointer data);
 /**
   @brief Show About dialog when menu pressed
   
-  @param GtkMenuItem
-  @param gpointer
+  @param menuItem Menu item that was clicked
+  @param userData User data passed on by callback function
 */
-void onAboutActivate (GtkMenuItem *, gpointer);
+void onAboutActivate (GtkMenuItem *menuItem, gpointer userData);
 
 /**
   @brief Presents the result with a pop up
 
-  @param gpointer Data to passed to the function is ignored 
+  @param data Data passed to the function is ignored 
 */
-int presResult( gpointer );
+void presResult( gpointer data );
 /**
   @brief Creates the result pop up widget
 
-  @param int Number of resistors
-  @param char Type of connection 'S' Serial, 'P' Parallell
-  @param float Voltage
-  @param float[] Resistor values
+  @return Pop up widget
   */
-GtkWidget *createResultPopUp ( int, char, float, float [] );
+GtkWidget *createResultPopUp ( void );
 /**
   @brief Shows the pop up with result
 
-  @param int number of resistors
-  @param char Type of connection 'S' Serial, 'P' Parallell
-  @param float Voltage
-  @param float[] Resistor values
 */
-int showPopUpWithResult( int, char, float, float [] );
+void showPopUpWithResult( void );

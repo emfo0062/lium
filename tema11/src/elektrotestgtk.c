@@ -5,9 +5,9 @@
 * liraries produced in tema 9
 *
 * @author Petter Lerenius
-* @date 27/5-2014
+* @date 27/8-2014
 * @version 1.0
-* @file electrotestgtk.c
+* @file elektrotestgtk.c
 ***************************************************/
 
 #include <gtk/gtk.h>

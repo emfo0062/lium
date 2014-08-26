@@ -13,7 +13,7 @@ float getPower(void);
 /**
   @brief Returns the index:th component value
 
-  @param unsigned int index of the component
+  @param index The index of the component
   @return Component as a float
   */
 float getComponentValue(unsigned int index );
@@ -38,11 +38,11 @@ float getResistance(void);
   @brief Calculates the different electrotest
   results based on the input parameters
 
-  @param int resistor count
-  @param char connection type
-  @param float voltage
-  @param float [3] for the resistors
+  @param count number of resistors
+  @param connection type
+  @param volt voltage level
+  @param resistors resistor values
 
   @return 0 if calculation went well, otherwise not zero
   */
-int calcValues(int,char,float,float[3]);
+int calcValues(int count,char connection,float volt,float resistors[3]);
