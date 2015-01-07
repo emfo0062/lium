@@ -5,33 +5,33 @@ Petter Lerenius, 790703-0295
 
 Inledning
 =========
-Tema 12 går ut på att lära sig använda eclipse ihop med GTK+ och OpenCV. Den är uppdelad i två
-delmoment, där den första delen går ut på att lägga till funtionallitet till befintlig kod, medans
+Tema 12 går ut på att lära sig använda Eclipse ihop med GTK+ och OpenCV. Den är uppdelad i två
+delmoment, där den första delen går ut på att lägga till funtionallitet till befintlig kod, medan
 den andra delen går ut på att rätta en bug i befintlig kod.
 
 För att kunna utföra uppgifterna krävs det att man installerar och konfigurerar Eclipse, GTK+ och
-OpenCV, och därefter sätter upp och konfigurerar projekt i Eclipse för att kunna kompilera och länka.
+OpenCV, och därefter sätter upp och konfigurerar projekten i Eclipse för att kunna kompilera och
+länka med dessa bibliotek.
 
 Den första uppgiften går ut på att lägga till zoomnings-funktionalitet till ett program som ritar upp
 en Mandelbrot fraktal i ett fönster. Genom att användaren klickar med vänster eller höger musknapp ska
 man zooma in respektive zooma ut. Dessutom ska man utreda huruvida det går att optimera koden för att
-få det att beräkna fraktalen snabbare.
+få beräkningen av fraktalen att gå snabbare.
 
 I den andra uppgiften ska man rätta en bugg som gör att kopieringen av en bild från en buffer till en
-annan blir förvrängd. Uppgiften kräver dock att man kan sätta upp ett projekt som använder sig av både
-OpenCV och GTK i Eclipse.
+annan blir förvrängd. Uppgiften kräver också att man kan sätta upp ett projekt som använder sig av både
+OpenCV och GTK+ i Eclipse.
 
 Den fullständiga beskrivningen av uppgifterna finns på kurshemsidan [1].
 
 Metod
 =====
-Enligt uppgiftsbeskrivningen skulle Eclipse användas som utvecklingsmiljö. Eclipse är en IDE,
-integrerad utvecklingsmiljö, som underlättar mycket för en utvecklare. Eclipse hjälper till
-att generera makefiler, köra kompilatorn och länkaren, kontrollera kodsyntax, m.m. i ett och
-samma skal.
+Enligt uppgiftsbeskrivningen skulle Eclipse användas som utvecklingsmiljö. Eclipse är en IDE, integrerad
+utvecklingsmiljö, som underlättar mycket för en utvecklare. Eclipse hjälper till att generera makefiler,
+köra kompilatorn och länkaren, kontrollera kodsyntax, m.m. i ett och samma skal.
 
-För att få allting att fungera bra behöver man konfigurera Eclipse att fungera ihop med de olika
-biblioteken som används i uppgifterna, så som OpenCV och GTK+.
+För att få allting att fungera bra behöver man konfigurera Eclipse att fungera ihop med de olika biblioteken
+som används i uppgifterna, så som OpenCV och GTK+.
 
 Uppgifterna har lösts på ett system som använder Ubuntu 14.10, som körs i en VirtualBox installation
 på ett Windows 8.1 system.
@@ -40,7 +40,7 @@ på ett Windows 8.1 system.
 Resultat
 ========
 Innan jag började med uppgifterna så laddade jag ner Eclipse genom att följa instruktionerna
-på hemsidan. Därefter ladded jag ner och installerade GTK+. För att se att allting fungerade
+på hemsidan [3]. Därefter laddade jag ner och installerade GTK+. För att se att allting fungerade
 så som det var tänkt, utförde jag exemplet som fanns där med ett enkelt GTK fönster. Därefter
 kände jag mig redo att påbörja temats övningsuppgifter.
 
@@ -68,13 +68,13 @@ Eclipse konfigureras för att hitta GTK+ headerfilerna. För att göra detta gjo
     fler konfigureringar.
 11. Expandera C/C++ General och välj "Paths and Symbols".
 12. Välj fliken "Includes" och klicka på "Add".
-13. Bocka i rutan "Add to all languages", skriv in /usr/include/gtk-2.0 och kicka Ok.
+13. Bocka i rutan "Add to all languages", skriv in /usr/include/gtk-2.0 och klicka Ok.
 14. Klicka nu Ok för att stänga dialogrutan och slutligen Finish.
 
-Nu har vi konfigurerat upp Eclipse projektet för att kunna använda sig av GTK+. Om amn redan
-har skapat ett projekt, så går det att högerklicka på projektnamnet i Eclipse och välja "Properties".
+Nu har vi konfigurerat upp Eclipse projektet för att kunna använda sig av GTK+. Om man redan har
+skapat ett projekt, så går det att högerklicka på projektnamnet i Eclipse och välja "Properties".
 
-Nu kan projektet kompilera, länka och det går att provköra. Nu är det gdags att implementera den
+Nu kan projektet kompilera, länka och det går att provköra. Nu är det dags att implementera den
 efterfrågade zoomfunktionen, vilket kan göras genom att en ny fraktal beräknas vid musklick. Vid
 klick med vänster musknapp dubbleras skalningsfaktorn och nya värden för fraktalens centrumpunkt
 beräknas. Därefter beräknas fraktalen om genom den befintlig algoritmen, men nu med nya värden.
@@ -84,8 +84,8 @@ Uppgiften innebar också att man skulle undersöka om det gick att optomera ber�
 för att snabba upp applikationen. Efter att ha granskat koden kom jag fram till att man skulle
 kunna dela upp beräkningen i flera trådar, t.ex. 4 stycken som beräknade en fjärdedel var, men
 detta skulle bara innebära en prestanda förbättring om fyra kärnor fanns tilgängliga i systemet.
-Om så inte är fallet skulle det kunna leda till en prestanda försämmring. Så det här spåret genom-
-fördes inte.
+Om så inte är fallet skulle det kunna leda till en prestanda försämring, då kärnan tvingas task
+switcha. Så det här spåret genomfördes inte.
 
 En annan idé som kom upp var att behålla de redan uträknade punkterna från föregående beräkning,
 och bara beräkna de nya punkterna. Detta skulle dock kräva en ganska så stor omskrivning av programmet
@@ -101,6 +101,10 @@ expanderar man "GCC C++ Compiler" och markerar "Optimization". Till höger finns
 med titeln Optimization Level. För maximal optimering väljer man där -03. Denna förändring gjorde att
 applikationen körde betydligt snabbare.
 
+Det kan vara bra att tänka på att det kan vara svårt att debugga optimerad kod då inte binären går
+att matcha mot c++-koden. Kompilatorn kan ha kastat om ordningen på koden, tagit bort kod, eller modifierat
+assemblerkoden så att ingen motsvarande c++-rad finns att tillgå.
+
 För implementationsdetaljer hänvisas till den bifogade källkoden. Ändringar har gjorts i uppg1/main.cpp.
 
 Uppgift 2
@@ -114,7 +118,7 @@ för GTK+, inga inställningar behöver tas bort. För att genomföra uppgift 2 
 är konfigurerade. 
 
 Efter en hel del pyssel med att få webkameran att fungera, gick det relativt snabbt att lokalisera buggen.
-Eftersom det hade med kopieringen av bufferdatat att göra, kunde man se på sättet bilden blev påverkad
+Eftersom det hade med kopieringen av bufferdatat att göra, kunde man se, på sättet bilden blev påverkad,
 att det sannolikt hade med adresseringen av buffern att göra. Ett provskott att lägga till paranteser till
 indexeringen löste problemet på en gång.
 
@@ -128,7 +132,8 @@ ha för nytta av ett IDE. Jag tyckte dock att det var lite omständigt att det i
 ut biblioteken för kompilatorn och länkaren, utan att jag även behövde peka ut det för Eclipse, men
 det kanske finns en mening med detta som jag ännu inte förstått.
 
-Resultatet var för övrigt som jag förväntat mig av problembeskrivningarna.
+Resultatet var för övrigt som jag förväntat mig av problembeskrivningarna. Resultaten kan även ses av
+skärmdumparna som gjordes med scrot.
 
 Tipsen som gavs av "linUM: Inställningar och installation av GTK+ för Eclipse" [3] och "TIPS vid real-
 isering av fraktaluppgift" [4] hjälpte mig mycket för att kunna lösa uppgifterna.
