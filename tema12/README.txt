@@ -5,13 +5,21 @@ Petter Lerenius, 790703-0295
 
 Inledning
 =========
-Tema 12 går ut på att lära sig använda eclipse ihop med GTK+ och OpenCV. Den är uppdelad i två delmoment, där den första delen går ut på att lägga till funtionallitet till befintlig kod, medans den andra delen går ut på att rätta en bug i befintlig kod.
+Tema 12 går ut på att lära sig använda eclipse ihop med GTK+ och OpenCV. Den är uppdelad i två
+delmoment, där den första delen går ut på att lägga till funtionallitet till befintlig kod, medans
+den andra delen går ut på att rätta en bug i befintlig kod.
 
-För att kunna utföra uppgifterna krävs det att man installerar och konfigurerar Eclipse, GTK+ och OpenCV, och därefter sätter upp och konfigurerar projekt i Eclipse för att kunna kompilera och länka.
+För att kunna utföra uppgifterna krävs det att man installerar och konfigurerar Eclipse, GTK+ och
+OpenCV, och därefter sätter upp och konfigurerar projekt i Eclipse för att kunna kompilera och länka.
 
-Den första uppgiften går ut på att lägga till zoomnings-funktionalitet till ett program som ritar upp en Mandelbrot fraktal i ett fönster. Genom att användaren klickar med vänster eller höger musknapp ska man zooma in respektive zooma ut. Dessutom ska man utreda huruvida det går att optimera koden för att få det att beräkna fraktalen snabbare.
+Den första uppgiften går ut på att lägga till zoomnings-funktionalitet till ett program som ritar upp
+en Mandelbrot fraktal i ett fönster. Genom att användaren klickar med vänster eller höger musknapp ska
+man zooma in respektive zooma ut. Dessutom ska man utreda huruvida det går att optimera koden för att
+få det att beräkna fraktalen snabbare.
 
-I den andra uppgiften ska man rätta en bugg som gör att kopieringen av en bild från en buffer till en annan blir förvrängd. Uppgiften kräver dock att man kan sätta upp ett projekt som använder sig av både OpenCV och GTK i Eclipse.
+I den andra uppgiften ska man rätta en bugg som gör att kopieringen av en bild från en buffer till en
+annan blir förvrängd. Uppgiften kräver dock att man kan sätta upp ett projekt som använder sig av både
+OpenCV och GTK i Eclipse.
 
 Den fullständiga beskrivningen av uppgifterna finns på kurshemsidan [1].
 
@@ -93,32 +101,59 @@ expanderar man "GCC C++ Compiler" och markerar "Optimization". Till höger finns
 med titeln Optimization Level. För maximal optimering väljer man där -03. Denna förändring gjorde att
 applikationen körde betydligt snabbare.
 
-För implementationsdetaljer hänvisas till den bifogade källkoden. Ändringar
-har gjorts i Uppgift1-kod/main.cpp.
+För implementationsdetaljer hänvisas till den bifogade källkoden. Ändringar har gjorts i uppg1/main.cpp.
 
 Uppgift 2
-Att konfigurera ett projekt för OpenCV innefattar exakt samma steg som för
-konfiguration av GTK+-2.0. Byt ut GTK+-FLAGS mot OPENCV-CLAGS, GTK+-LIBS mot
-OPENCV-LIBS, `pkg-config --cflags gtk+-2.0` mot `pkg-config --cflags opencv`,
-`pkg-config --libs gtk+-2.0` mot `pkg-config --libs opencv` och 
+För att konfigurera ett projekt för OpenCV behöver man genomföra samma steg som för konfiguration av
+GTK+-2.0. Byt ut GTK+-FLAGS mot OPENCV-CLAGS, GTK+-LIBS mot OPENCV-LIBS, `pkg-config --cflags gtk+-2.0`
+mot `pkg-config --cflags opencv`, `pkg-config --libs gtk+-2.0` mot `pkg-config --libs opencv` och
 /usr/include/gkt-2.0 mot /usr/include/opencv i stegen ovan.
 
-Notera att inställningar för OpenCV kan läggas till bland de redan befintliga
-inställningarna och inga behöver tas bort.
+Värt att notera är att inställningar för OpenCV kan läggas till bland de redan befintliga inställningarna
+för GTK+, inga inställningar behöver tas bort. För att genomföra uppgift 2 krävs att både OpenCV och GTK+
+är konfigurerade. 
+
+Efter en hel del pyssel med att få webkameran att fungera, gick det relativt snabbt att lokalisera buggen.
+Eftersom det hade med kopieringen av bufferdatat att göra, kunde man se på sättet bilden blev påverkad
+att det sannolikt hade med adresseringen av buffern att göra. Ett provskott att lägga till paranteser till
+indexeringen löste problemet på en gång.
+
+För implementations detaljer hänvisas till uppg2/opencv.c
+
 
 Diskussion
 ==========
+Det var en givande och rolig övning som gav mig en bra insikt i hur Eclipse fungerar och vad jag kan
+ha för nytta av ett IDE. Jag tyckte dock att det var lite omständigt att det inte räckte med att peka
+ut biblioteken för kompilatorn och länkaren, utan att jag även behövde peka ut det för Eclipse, men
+det kanske finns en mening med detta som jag ännu inte förstått.
+
+Resultatet var för övrigt som jag förväntat mig av problembeskrivningarna.
+
+Tipsen som gavs av "linUM: Inställningar och installation av GTK+ för Eclipse" [3] och "TIPS vid real-
+isering av fraktaluppgift" [4] hjälpte mig mycket för att kunna lösa uppgifterna.
 
 Slutord
 =======
+Det var intressant att se hur pass enkelt det vara att komma igång med Eclipse och att konfigurera upp
+det för att använda GTK+ och OpenCV. Det hade nog inte varit lika lätt utan att ha tillgång till guiderna
+på kurshemsidan, men det går antagligen att hitta informationen relativt lätt på andra sidor.
+
+Jag kommer att fortsätta att experimentera med dessa bibliotek och att försöka att använda Eclipse i
+framtida projekt. Det är bra att ha tillgång till ett grafiskt verktyg som kan hjälpa till med editering,
+hoppa till deklarationer, få upp hjälptext samt debugging på ett enkelt sätt.
+
+Det var lite komplicerat att använda sig av en webcamera när det inte är säkert att man har en eller att
+systemet supportar det. Jag hade väldiga bekymmer att få min virituella maskin att hitta min webcamera, men
+det väl fungerade så gick det smidigt.
 
 Referenser
 ==========
 [1] linUM: Uppgift: Övning 12 Grafiska Utvecklingsmiljöer
     http://www.moodle2.tfe.umu.se/mod/assignment/view.php?id=275
 
-[2]
-
+[2] Installationshjälp Eclipse + OpenCV
+    http://www.moodle2.tfe.umu.se/mod/page/view.php?id=485
 
 [3] linUM: Inställningar och installation av GTK+ för Eclipse
     http://www.moodle2.tfe.umu.se/mod/page/view.php?id=482
