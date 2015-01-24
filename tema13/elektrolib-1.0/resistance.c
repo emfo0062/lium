@@ -16,19 +16,22 @@ float calc_resistance(int count, char conn, float *array)
   float tot_resistance = -1;
   if (array == 0)
   {
-    printf("array is NULL!");
+    printf("array is NULL!\n");
     return -1;
   }
 
   switch(conn)
   {
     case 'P':
+    case 'p':
       tot_resistance = parallel_resistors(count, array);
       break;
     case 'S':
+    case 's':
       tot_resistance = serial_resistors(count, array);
       break;
     default:
+      printf("Unknown connection letter! [P,p,S,s]\n");
       return -1;
       break;
   }
