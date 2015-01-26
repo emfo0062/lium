@@ -1,0 +1,8 @@
+Package: elektrotest
+Architecture: all
+Maintainer: Petter Lerenius
+Depends: elektrolib (>= 1.0), debconf(>= 0.5.00)
+Priority: optional
+Version: 1.0
+Description: An amzing elektronics calculator
+ This app will blow you away! Install now!
