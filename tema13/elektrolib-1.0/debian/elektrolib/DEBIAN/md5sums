@@ -1,0 +1,9 @@
+f52fb0c019aa077a7a2c1c7818fafaa9  usr/include/component.h
+fc47d39be7fde18f84b94c622167ab8e  usr/include/power.h
+35deb2486432dd3909a9d5b50d0e8c61  usr/include/resistance.h
+b92984613f6010098278290374c7d40a  usr/lib/libcomponent.so
+9fc6807c246ab0c1f1ddc76468a6eee2  usr/lib/libpower.so
+64d1a43d9f7e9a4094b36450c8345e8a  usr/lib/libresistance.so
+83ce5b98d179e38978cc05eaaa07814c  usr/share/doc/elektrolib/README.Debian
+62f884a62a37741cfe13ffbef09119fa  usr/share/doc/elektrolib/changelog.Debian.gz
+f131547dd4219121cefffc0edc4ee77d  usr/share/doc/elektrolib/copyright

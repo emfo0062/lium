@@ -1,0 +1,14 @@
+Source: elektrolib
+Priority: optional
+Maintainer: Petter Lerenius <plerenius@gmail.com>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+Section: libs
+Homepage:
+
+Package: elektrolib
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Tema 6 electrotest libraries
+ Libraries needed for the electrotest application.

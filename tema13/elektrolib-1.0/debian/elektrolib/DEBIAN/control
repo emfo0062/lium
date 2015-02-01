@@ -1,0 +1,10 @@
+Package: elektrolib
+Version: 1.0-1
+Architecture: amd64
+Maintainer: Petter Lerenius <plerenius@gmail.com>
+Installed-Size: 53
+Depends: libc6 (>= 2.2.5)
+Section: libs
+Priority: optional
+Description: Tema 6 electrotest libraries
+ Libraries needed for the electrotest application.
